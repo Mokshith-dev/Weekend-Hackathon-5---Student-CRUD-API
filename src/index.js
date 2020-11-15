@@ -43,8 +43,8 @@ app.post('/api/student',(req,res) => {
 
 });
 
-app.put('/api/student',(req,res) => {
-    const id = req.body.id;
+app.put('/api/student/:id',(req,res) => {
+    const id = req.params.id;
     const student = data.find(student => student.id === parseInt(id));
     const newName = req.body.name;
     if((!student) || (!newName)) {
@@ -55,8 +55,8 @@ app.put('/api/student',(req,res) => {
 
 });
 
-app.delete('/api/student',(req,res) => {
-    const id = req.body.id;
+app.delete('/api/student/:id',(req,res) => {
+    const id = req.params.id;
     const studentIndex = data.findIndex((student) => parseInt(id) === student.id);
     if(studentIndex === -1) {
         res.status(400);
