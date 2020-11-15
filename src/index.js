@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const port = 8080
 app.use(express.urlencoded());
 
-const data = require('./initialData.js');
+const data = require('./InitialData.js');
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -47,7 +47,7 @@ app.put('/api/student/:id',(req,res) => {
     const id = req.params.id;
     const student = data.find(student => student.id === parseInt(id));
     const newName = req.body.name;
-    if((!student) || (!newName)) {
+    if((!student) || (!newName)) { 
         res.status(400);
         return;
     }
