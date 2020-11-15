@@ -62,6 +62,7 @@ app.delete('/api/student/:id',(req,res) => {
         res.status(400);
         return;
     }
+    
     data.splice(studentIndex,1);
 })
 app.listen(port, () => console.log(`App listening on port ${port}!`))
