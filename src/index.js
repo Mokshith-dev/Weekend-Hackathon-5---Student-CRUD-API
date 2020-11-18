@@ -58,6 +58,7 @@ app.put('/api/student/:id',(req,res) => {
     }
     
     student.name = newName;
+    res.status(200).send("Updated");
 
 });
 
