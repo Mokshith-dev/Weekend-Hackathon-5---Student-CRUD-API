@@ -35,7 +35,7 @@ app.post('/api/student',(req,res) => {
     const newStudent = {
         id: data.length + 1,
         name: name,
-        currentClass: currentClass,
+        currentClass: parseInt(currentClass),
         division: division
     }
     data.push(newStudent);
@@ -65,6 +65,7 @@ app.delete('/api/student/:id',(req,res) => {
     }
     
     data.splice(studentIndex,1);
+    res.status(200).send(`STudent with ${id} deleted`);
 })
 app.listen(port, () => console.log(`App listening on port ${port}!`))
 
