@@ -65,8 +65,8 @@ app.put('/api/student/:id',(req,res) => {
     }
     //const studentObj = studentArray[studentIndex];
     for (const key in req.body) {
-        if(key === currentClass) {
-            studentArray[studentIndex][key] = patseInt(req.body[key]);
+        if(key === "currentClass" || key === "id") {
+            studentArray[studentIndex][key] = parseInt(req.body[key]);
         }
         else 
             studentArray[studentIndex][key] = req.body[key];
