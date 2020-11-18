@@ -39,7 +39,7 @@ app.post('/api/student',(req,res) => {
         division: division
     }
     studentArray.push(newStudent);
-    res.send(String(newStudent.id));
+    res.send({id: newStudent.id});
 
 });
 
@@ -47,11 +47,16 @@ app.put('/api/student/:id',(req,res) => {
     const id = req.params.id;
     const student = studentArray.find(student => student.id === parseInt(id));
     
-    if((!student) || (!newName)) { 
+    if(!student) { 
         res.status(400).send("Bad request");
         return;
     }
     const newName = req.body.name;
+    if(!newName) { 
+        res.status(400).send("Bad request");
+        return;
+    }
+    
     student.name = newName;
 
 });
