@@ -53,9 +53,9 @@ app.put('/api/student/:id',(req,res) => {
         return;
     }
     const studentSchema = Joi.object({
-        name: Joi.string().min(1),
-        currentClass: Joi.number().min(1),
-        division: Joi.string().min(1)
+        name: Joi.string(),
+        currentClass: Joi.number(),
+        division: Joi.string()
     });
 
     const {error,value} = studentSchema.validate(req.body);
