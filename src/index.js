@@ -65,8 +65,11 @@ app.put('/api/student/:id',(req,res) => {
     }
     //const studentObj = studentArray[studentIndex];
     for (const key in req.body) {
-        
-        studentArray[studentIndex][key] = req.body[key];
+        if(key === currentClass) {
+            studentArray[studentIndex][key] = patseInt(req.body[key]);
+        }
+        else 
+            studentArray[studentIndex][key] = req.body[key];
     }
     //studentArray.splice(studentIndex,1,{id: parseInt(id),...req.body});
     res.status(200).send("Updated");
