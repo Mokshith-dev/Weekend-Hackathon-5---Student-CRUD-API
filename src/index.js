@@ -3,8 +3,9 @@ const app = express()
 const bodyParser = require("body-parser");
 const port = 8080
 app.use(express.urlencoded());
-
+const Joi = require('joi')
 const studentArray = require('./InitialData.js');
+const { ValidationError } = require('joi');
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -45,19 +46,24 @@ app.post('/api/student',(req,res) => {
 
 app.put('/api/student/:id',(req,res) => {
     const id = req.params.id;
-    const student = studentArray.find(student => student.id === parseInt(id));
+    const studentIndex = studentArray.findIndex(student => student.id === parseInt(id));
     
-    if(!student) { 
+    if(studentIndex === -1) { 
         res.status(400).send("Bad request");
         return;
     }
-    const newName = req.body.name;
-    if(!newName) { 
-        res.status(400).send("Bad request");
+    const studentSchema = Joi.object({
+        name: Joi.string().min(1),
+        currentClass: Joi.number().min(1),
+        division: Joi.string().min(1)
+    });
+
+    const {error,value} = studentSchema.validate(req.body);
+    if(error !== undefined) {
+        res.status(400).send("Invalid input");
         return;
     }
-    
-    student.name = newName;
+    studentArray.splice(studentIndex,1,{id: parseInt(id),...req.body});
     res.status(200).send("Updated");
 
 });
