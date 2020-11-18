@@ -63,10 +63,10 @@ app.put('/api/student/:id',(req,res) => {
         res.status(400).send("Invalid input");
         return;
     }
-    const studentObj = studentArray[studentIndex];
+    //const studentObj = studentArray[studentIndex];
     for (const key in req.body) {
         
-            studentObj[key] = req.body[key];
+        studentArray[studentIndex][key] = req.body[key];
     }
     //studentArray.splice(studentIndex,1,{id: parseInt(id),...req.body});
     res.status(200).send("Updated");
