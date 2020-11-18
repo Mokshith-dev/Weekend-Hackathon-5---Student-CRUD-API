@@ -39,7 +39,7 @@ app.post('/api/student',(req,res) => {
         division: division
     }
     studentArray.push(newStudent);
-    res.send(newStudent.id);
+    res.send(String(newStudent.id));
 
 });
 
