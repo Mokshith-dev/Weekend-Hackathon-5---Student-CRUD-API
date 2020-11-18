@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const port = 8080
 app.use(express.urlencoded());
 
-const studentArray = require('./InitialstudentArray.js');
+const studentArray = require('./InitialData.js');
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
